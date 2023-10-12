@@ -1,4 +1,6 @@
+const apiUrl = 'https://api.github.com/repos/juliemusyoki/creative-hub-spa';
 
+document.addEventListener('DOMContentLoaded', () => {
 
 //navbar toggler 
 let navToggler = document.getElementById('navbar-toggler');
@@ -56,3 +58,19 @@ function clickHandler(e){
         behavior: "smooth"
     });
 }
+fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Process the data from the API
+            console.log('API Data:', data);
+            // For simplicity, let's log the data to the console
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+});
