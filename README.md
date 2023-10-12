@@ -36,7 +36,14 @@ To set up the project, follow these steps:
     cd creativity-hub-spa
     ```
 
-2. Open the `index.html` file in a web browser.
+2. Install dependencies (if needed).
+
+3. Start the JSON Server:
+
+    ```bash
+    json-server --watch db.json
+    ```
+4. Open `index.html` in a web browser.
 
 ## Technologies Used
 
