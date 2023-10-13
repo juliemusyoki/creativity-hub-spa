@@ -1,4 +1,4 @@
-const apiUrl = 'https://api.github.com/repos/octocat/Spoon-Knife/issues/31112';
+const apiUrl = 'http://localhost:3000/api/articles';
 let posts = [];
 
 document.addEventListener('DOMContentLoaded', () => {
