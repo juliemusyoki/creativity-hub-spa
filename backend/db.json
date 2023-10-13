@@ -1,11 +1,5 @@
 {
-  "posts": [
-    {
-      "title": "",
-      "content": "",
-      "id": 2
-    }
-  ],
+  "posts": [],
   "comments": [],
   "profile": {
     "name": "typicode"
