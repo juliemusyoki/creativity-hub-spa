@@ -7,8 +7,9 @@ CreativeHub is a dynamic web application that serves as a platform for a design 
 - **Portfolio Section:** Displaying a curated selection of their work, demonstrating their expertise and capabilities.
 - **Team Section:** Introducing the talented and creative individuals behind the scenes, highlighting the team's skills and experience.
 - **Contact Section:** Allowing potential clients to reach out and connect, promoting engagement and collaboration.
+- **Updates Section:** Manage and display updates, enabling easy creation, fetching, and deletion of posts.
 
-The primary goal of this project is to effectively promote their design and development services, showcase their diverse portfolio, and provide a platform to engage with visitors interested in their offerings. Through a seamless user experience and an emphasis on creativity and innovation, CreativeHub aims to establish a strong online presence in the design and development industry.
+The primary goal of this project is to effectively promote their design and development services, showcase their diverse portfolio, provide a platform to engage with visitors interested in their offerings, and enable easy management of updates. Through a seamless user experience and an emphasis on creativity and innovation, CreativeHub aims to establish a strong online presence in the design and development industry.
 
 ## Table of Contents
 
@@ -24,6 +25,7 @@ The primary goal of this project is to effectively promote their design and deve
 - Engaging user interface with a carefully designed layout.
 - Showcase of the company's portfolio to demonstrate their skills and expertise.
 - Easy navigation to seamlessly explore different sections of the website.
+- Ability to manage and display updates in the Updates Section.
 
 ## Project Setup
 
@@ -43,6 +45,7 @@ To set up the project, follow these steps:
     ```bash
     json-server --watch db.json
     ```
+
 4. Open `index.html` in a web browser.
 
 ## Technologies Used

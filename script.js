@@ -1,4 +1,5 @@
 const apiUrl = 'https://api.github.com/repos/octocat/Spoon-Knife/issues/31112';
+let posts = [];
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -44,7 +45,6 @@ function changeFilterBtn(){
     });
 }
 
-// smooth scroll while clicking
 const links = document.querySelectorAll('.navbar-nav .nav-item');
 
 for(const link of links){
@@ -77,3 +77,107 @@ fetch(apiUrl)
         });
         
 });
+
+// ... (existing code)
+
+function fetchPosts() {
+    fetch('http://localhost:3000/posts')
+      .then(response => response.json())
+      .then(posts => displayPosts(posts));
+  }
+  
+  function displayPosts(posts) {
+    const postList = document.getElementById('postList');
+    postList.innerHTML = '';
+    posts.forEach(post => {
+      const li = document.createElement('li');
+      li.textContent = `${post.title}: ${post.content}`;
+      postList.appendChild(li);
+    });
+  }
+  
+  function createPost() {
+    const postTitle = document.getElementById('postTitle').value;
+    const postContent = document.getElementById('postContent').value;
+  
+    const post = {
+      title: postTitle,
+      content: postContent
+    };
+  
+    fetch('http://localhost:3000/posts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(post)
+    })
+    .then(response => response.json())
+    .then(() => fetchPosts());
+  }
+
+  function fetchPosts() {
+    fetch('http://localhost:3000/posts')
+      .then(response => response.json())
+      .then(postsData => {
+        posts = postsData;
+        displayPosts(posts);
+      });
+  }
+
+  function displayPosts(posts) {
+    const postList = document.getElementById('postList');
+    postList.innerHTML = '';
+    posts.forEach((post, index) => {
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <strong>${post.title}</strong>: ${post.content}
+        <button onclick="deletePost(${index})">Delete</button>`;
+      postList.appendChild(li);
+    });
+  }
+
+  function createPost() {
+    const postTitle = document.getElementById('postTitle').value;
+    const postContent = document.getElementById('postContent').value;
+
+    const post = {
+      title: postTitle,
+      content: postContent
+    };
+
+    fetch('http://localhost:3000/posts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(post)
+    })
+    .then(response => response.json())
+    .then(() => fetchPosts());
+  }
+
+  function deletePost(index) {
+    const postId = posts[index].id; // Assuming your posts have an id property
+    fetch(`http://localhost:3000/posts/${postId}`, {
+      method: 'DELETE'
+    })
+    .then(response => response.json())
+    .then(() => fetchPosts());
+  }
+
+  fetch(apiUrl)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('API Data:', data);
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    });
+
+  

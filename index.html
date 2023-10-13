@@ -41,6 +41,9 @@
           <li class = "nav-item">
             <a href = "#contact" class = "nav-link">contact</a>
           </li>
+          <li class = "nav-item">
+            <a href = "#updates" class = "nav-link">updates</a>
+          </li>
         </ul>
       </div>
     </nav>
@@ -319,6 +322,29 @@
     </div>
   </section>
   <!-- end of contact section -->
+
+
+  <!-- section for posts -->
+  <section id="posts" class="container py-5">
+    <div class="title">
+      <h2 class="title-text">Updates</h2>
+      <h3 class="title-subtext">Manage Updates</h3>
+    </div>
+
+    <div>
+      <input type="text" id="postTitle" placeholder="Post Title">
+      <input type="text" id="postContent" placeholder="Post Content">
+      <button onclick="createPost()">Create Updates</button>
+    </div>
+
+    <div>
+      <button onclick="fetchPosts()">Fetch Updates</button>
+      <button onclick="deletePosts()">Delete </button>
+    </div>
+
+    <ul id="postList"></ul>
+  </section>
+  <!-- end of section for posts -->
 
   <!-- footer section -->
   <footer>
