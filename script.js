@@ -45,6 +45,7 @@ function changeFilterBtn(){
     });
 }
 
+// smooth scroll while clicking
 const links = document.querySelectorAll('.navbar-nav .nav-item');
 
 for(const link of links){
@@ -160,6 +161,14 @@ function fetchPosts() {
   function deletePost(index) {
     const postId = posts[index].id; // Assuming your posts have an id property
     fetch(`http://localhost:3000/posts/${postId}`, {
+      method: 'DELETE'
+    })
+    .then(response => response.json())
+    .then(() => fetchPosts());
+  }
+
+  function deleteAllPosts() {
+    fetch('http://localhost:3000/posts', {
       method: 'DELETE'
     })
     .then(response => response.json())
