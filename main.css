@@ -390,6 +390,7 @@ button{
     background: var(--lightGrey);
     padding: 2rem;
     margin-top: 1rem ;
+    margin-bottom: 1rem;
   }
   
   #posts .title {
