@@ -40,7 +40,7 @@ To set up the project, follow these steps:
 
 2. Install dependencies (if needed).
 
-3. Change directory to the backend folder and start the JSON Server:
+3. Change directory to the backend folder and Start the JSON Server:
 
     ```bash
     json-server --watch db.json
