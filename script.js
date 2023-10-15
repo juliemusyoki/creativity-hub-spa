@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function fetchPosts() {
-    fetch(`${baseUrl}`)
+    fetch(`${baseUrl}/posts`)
         .then(response => response.json())
         .then(posts => displayPosts(posts));
 }
