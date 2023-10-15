@@ -82,7 +82,7 @@ fetch(apiUrl)
 // ... (existing code)
 
 function fetchPosts() {
-    fetch('https://creative-hub-8310.onrender.com/articles')
+    fetch('https://creative-hub-8310.onrender.com/posts')
       .then(response => response.json())
       .then(posts => displayPosts(posts));
   }
@@ -106,7 +106,7 @@ function fetchPosts() {
       content: postContent
     };
   
-    fetch('https://creative-hub-8310.onrender.com/articles', {
+    fetch('https://creative-hub-8310.onrender.com/posts', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -118,7 +118,7 @@ function fetchPosts() {
   }
 
   function fetchPosts() {
-    fetch('https://creative-hub-8310.onrender.com/articles')
+    fetch('https://creative-hub-8310.onrender.com/posts')
       .then(response => response.json())
       .then(postsData => {
         posts = postsData;
@@ -147,7 +147,7 @@ function fetchPosts() {
       content: postContent
     };
 
-    fetch('https://creative-hub-8310.onrender.com/articles', {
+    fetch('https://creative-hub-8310.onrender.com/posts', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -160,7 +160,7 @@ function fetchPosts() {
 
   function deletePost(index) {
     const postId = posts[index].id; // Assuming your posts have an id property
-    fetch(`https://creative-hub-8310.onrender.com/articles/${postId}`, {
+    fetch(`https://creative-hub-8310.onrender.com/posts/${postId}`, {
       method: 'DELETE'
     })
     .then(response => response.json())
@@ -168,7 +168,7 @@ function fetchPosts() {
   }
 
   function deleteAllPosts() {
-    fetch('https://creative-hub-8310.onrender.com/articles', {
+    fetch('https://creative-hub-8310.onrender.com/posts', {
       method: 'DELETE'
     })
     .then(response => response.json())
