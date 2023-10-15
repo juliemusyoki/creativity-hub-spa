@@ -66,70 +66,100 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function fetchPosts() {
-    fetch(`${baseUrl}/posts`)
-        .then(response => response.json())
-        .then(posts => displayPosts(posts));
+  fetch(`${baseUrl}`)
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+          return response.json();
+      })
+      .then(data => {
+          // Ensure data is an array
+          if (!Array.isArray(data)) {
+              throw new Error('Data is not an array');
+          }
+          posts = data;  // Update posts array
+          displayPosts(posts);
+      })
+      .catch(error => {
+          console.error('Error fetching posts:', error);
+      });
 }
 
 function displayPosts(posts) {
-    const postList = document.getElementById('postList');
-    postList.innerHTML = '';
-    posts.forEach((post, index) => {
-        const li = document.createElement('li');
-        li.innerHTML = `
-            <strong>${post.title}</strong>: ${post.content}
-            <button onclick="deletePost(${index})">Delete</button>`;
-        postList.appendChild(li);
-    });
+  const postList = document.getElementById('postList');
+  postList.innerHTML = '';
+  posts.forEach((post, index) => {
+      const li = document.createElement('li');
+      li.innerHTML = `
+          <strong>${post.title}</strong>: ${post.content}
+          <button onclick="deletePost(${post.id})">Delete</button>`;
+      postList.appendChild(li);
+  });
 }
 
 function createPost() {
-    const postTitle = document.getElementById('postTitle').value;
-    const postContent = document.getElementById('postContent').value;
+  const postTitle = document.getElementById('postTitle').value;
+  const postContent = document.getElementById('postContent').value;
 
-    const post = {
-        title: postTitle,
-        content: postContent
-    };
+  const post = {
+      title: postTitle,
+      content: postContent
+  };
 
-    fetch(`${baseUrl}/posts`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(post)
-    })
-        .then(response => response.json())
-        .then(() => fetchPosts());
+  fetch(`${baseUrl}`, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(post)
+  })
+      .then(response => response.json())
+      .then(() => fetchPosts());
 }
 
-function deletePost(index) {
-    const postId = posts[index].id; // Assuming your posts have an id property
-    fetch(`${baseUrl}/posts/${postId}`, {
-        method: 'DELETE'
-    })
-        .then(response => response.json())
-        .then(() => fetchPosts());
+function deletePost(postId) {
+  fetch(`${baseUrl}/${postId}`, {
+      method: 'DELETE'
+  })
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+          return response.json();
+      })
+      .then(() => fetchPosts())
+      .catch(error => {
+          console.error('Error deleting post:', error);
+      });
 }
 
 function deleteAllPosts() {
-    fetch(`${baseUrl}/posts`, {
-        method: 'DELETE'
-    })
-        .then(response => response.json())
-        .then(() => fetchPosts());
+  fetch(`${baseUrl}`, {
+      method: 'DELETE'
+  })
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+          return response.json();
+      })
+      .then(() => fetchPosts())
+      .catch(error => {
+          console.error('Error deleting all posts:', error);
+      });
 }
 
 fetch(apiUrl)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log('API Data:', data);
-    })
-    .catch(error => {
-        console.error('Error fetching data:', error);
-    });
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+      return response.json();
+  })
+  .then(data => {
+      console.log('API Data:', data);
+  })
+  .catch(error => {
+      console.error('Error fetching data:', error);
+  });
