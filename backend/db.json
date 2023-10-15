@@ -1,19 +1,14 @@
 {
-  "articles": [
+  "posts": [
     {
       "id": 1,
-      "title": "Example Article",
-      "content": "This is an example."
+      "title": "Sample Post 1",
+      "content": "This is the content of the first sample post."
     },
     {
       "id": 2,
-      "title": "Second Article",
-      "content": "This is also an example."
-    },
-    {
-      "title": "Third Article",
-      "content": "Another example!",
-      "id": 3
+      "title": "Sample Post 2",
+      "content": "This is the content of the second sample post."
     }
   ]
 }
